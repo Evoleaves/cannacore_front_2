@@ -11,16 +11,14 @@ function App() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (view === "dashboard") {
-      fetch(\`\${API_URL}/varieties/\`)
-        .then((res) => res.json())
-        .then((data) => {
-          setVarieties(data.message || []);
-        })
-        .catch(() => setVarieties(["Error loading varieties"]));
-    }
-  }, [view]);
+useEffect(() => {
+  fetch(`${API_URL}/varieties/`)
+    .then((res) => res.json())
+    .then((data) => {
+      setVarieties(data.message || []);
+    })
+    .catch(() => setVarieties(["Error loading varieties"]));
+}, [view]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
